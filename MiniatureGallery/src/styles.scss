@@ -1,0 +1,207 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$MiniatureGallery-primary: mat-palette($mat-indigo);
+$MiniatureGallery-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$MiniatureGallery-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$MiniatureGallery-theme: mat-light-theme($MiniatureGallery-primary, $MiniatureGallery-accent, $MiniatureGallery-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($MiniatureGallery-theme);
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Laila', serif;
+  }
+  html{
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  
+  body{
+    background-color: black;
+    background-image: url(assets/Images/fog-foggy-forest-4827.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background-position-y: bottom 100%; */
+    /* background-attachment: fixed; */
+    font-size: 14px;
+    align-content: center;
+  }
+  
+  header{
+  background-color: rgba(0, 0, 0, .9);
+  margin-top: -20px;
+  padding: 20px;
+  color: white;
+  line-height: 0.5;
+  }
+  
+  #pageTitleEmblem{
+  height: 75px;
+  width: 75px;
+  float: left;
+  }
+  
+  #pageTitle{
+  margin: 20px 0 0 50px;
+  font-weight: bold;
+  }
+  
+  #pageSubtitle{
+    margin: 20px 0 0 50px;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  
+  #linkBox{
+  float: right;
+  margin: -30px 50px;
+  font-size: 20px;
+  color: white;
+  }
+  
+  .links{
+    padding-right: 10px;
+    color: white;
+  }
+  
+  #facebookIcon{
+    height: 5vh;
+    width: auto;
+    vertical-align: middle;
+  }
+  
+  #youtubeIcon{
+    height: 5vh;
+    width: auto;
+    vertical-align: middle;
+  }
+  
+  a:link {
+    text-decoration: none;
+  }
+  
+  a:visited {
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: none;
+    color: rgb(0, 195, 255);
+    font-size: 120%;
+  }
+  
+  a:active {
+    text-decoration: none;
+  }
+  
+  
+  
+  main{
+    /* display: grid;
+    grid-template-columns: repeat(3, 1fr); */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 50px 5vw 50px 5vw;
+    justify-content: center;
+  }
+  
+  
+  .mainSections{
+    font-size: 14px;
+    /* background-color: rgba(0, 0, 0, .8); */
+    color: white;
+    padding: 20px;
+    margin-bottom: 5vh;
+    border-radius: 25px;
+  }
+  
+  .mainTitles{
+    font-size: 20px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, .8);
+    border-radius: 25px;
+    margin-bottom: 5px;
+  }
+  
+  .tileImages{
+    width: 20vw;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 25px;
+  }
+  
+  
+  
+  #mainLeft{
+    margin-right: 5vw;
+  }
+  
+  #miniaturesGalleryImage{
+  width: 20vw;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 25px;
+  }
+  
+  #mainMiddle
+  {
+    /* background-color: rgba(0, 0, 0, .5); */
+  }
+  
+  #playingImage{
+  width: 20vw;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  }
+  #mainRight{
+    margin-left: 5vw;
+  }
+  
+  #hallImage{
+    width: 20vw;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  footer{
+    background-color: rgba(0, 0, 0, 0.5);
+     position: fixed; 
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    color: white;
+    font-size: 10px; 
+  }
+  
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
