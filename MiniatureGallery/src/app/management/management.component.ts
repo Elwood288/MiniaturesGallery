@@ -17,11 +17,27 @@ export class ManagementComponent implements OnInit {
   name: string;
   game: string;
   keywords: string;
+  isEditing: boolean = false;
+  rowState: { [key: string]: boolean } = {};
+
+  onFileChanged(event) {
+    const file = event.target.files[0]
+  }
+
   constructor(private _miniatureService: MiniatureService, private formBuilder: FormBuilder, private Router: Router) {}
 
   ngOnInit() {
    
-    this._miniatureService.get().subscribe(data=> (this.miniatureList = data));
+    this._miniatureService.get().subscribe(data=> {
+      this.miniatureList = data;
+
+      if(Object.keys(this.rowState).length === 0) {
+        data.map(({ id }) => id).reduce((memo, val) => {
+          memo[val] = false;
+          return memo;
+        }, this.rowState);
+      }
+    });
     console.log(this.miniatureList);
 
     this.miniatureForm = this.formBuilder.group({
@@ -41,15 +57,26 @@ export class ManagementComponent implements OnInit {
     this.game = "";
     this.keywords = "";
   }
-  // addMiniature(): void{
-  //   this.Id++;
-  //   this._miniatureService.add({
-  //     id:this.Id,
-  //     name: '',
-  //     game: '',
-  //     keywords: ''
-  //   });
-  // }
+ 
 
+  toggle(id: number){
+    this.rowState[id] = !this.rowState[id]
+    this.isEditing = !this.isEditing;
+  }
+
+  update(miniature : IMiniature){
+    this._miniatureService.update(miniature).subscribe(data=> data)
+    this.toggle(miniature.id);
+  }
+
+  delete(miniature : IMiniature){
+    this._miniatureService.delete(miniature).subscribe(data=> {  
+      this._miniatureService.get().subscribe(data=> {
+        this.miniatureList = data;})
+    })
+
+    
+
+  }
 }
 

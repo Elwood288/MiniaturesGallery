@@ -9,11 +9,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule } from '@angular/material' 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     GalleryComponent,
-    ManagementComponent
+    ManagementComponent,
+   
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {IMiniature} from '../interfaces/iminiature';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 
@@ -13,7 +13,7 @@ export class MiniatureService {
   constructor(private http: HttpClient) { }
 
   // private _url: string = "../assets/Data/miniatures.json";
-  private _url: string = "https://localhost:44304/api/miniatures"
+  private _url: string = "https://localhost:44304/api/miniatures/"
 
   get():Observable<IMiniature[]> {
 return this.http.get<IMiniature[]>(this._url)
@@ -24,18 +24,24 @@ return this.http.get<IMiniature[]>(this._url)
 
 // }
 
-add(name: string,game: string, keywords): Observable<any> {
-  const newId =
-    this.miniatureList
-      .map(x => x.Id)
-      .reduce((prev, curr) => (prev < curr ? curr : prev),0) + 1;
+add(name: string,game: string, keywords: string): Observable<any> {
+  var keyWordsArray = keywords.split(' ');
       var miniature = {
-        Id: newId,
+        Id: 0,
         Name: name,
         Game: game,
-        Keywords: keywords
+        Keywords: keyWordsArray
       };
-      console.log(miniature);
+
  return this.http.post<IMiniature>(this._url, miniature);
 }
+ update(miniature: IMiniature): Observable<any>{
+   return this.http.put(this._url + miniature.id, miniature);
+ }
+
+ delete(miniature: IMiniature): Observable<any>{
+  return this.http.delete(this._url + miniature.id);
+  // return this.http.delete(this._url + miniature.Id, miniature);
+}
+
 }

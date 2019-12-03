@@ -1,6 +1,6 @@
 export interface IMiniature {
-    Id: number; 
-    Name: string;
-    Game: string;
-    Keywords: string[];
+    id: number; 
+    name: string;
+    game: string;
+    keywords: string[];
 }

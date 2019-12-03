@@ -7,6 +7,7 @@ import { ManagementComponent } from './management/management.component';
 const routes: Routes = [
   {path:"", component: ManagementComponent},
   // {path:"management", component: ManagementComponent}
+   {path:"gallery", component: GalleryComponent}
 ];
 
 @NgModule({

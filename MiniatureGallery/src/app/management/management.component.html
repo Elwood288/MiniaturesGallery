@@ -7,6 +7,12 @@
     <input id="name" type="text" [(ngModel)] = "name" formControlName="name" />
     </div>
     <div class="miniatureForm">
+        <label for="image">
+          Image:  
+        </label>
+        <input id="image" type="file" [(ngModel)] = "image" formControlName="image" (change)="onFileChanged($event)">
+        </div>
+    <div class="miniatureForm">
     <label for="game">
       Game:  
     </label>
@@ -20,31 +26,52 @@
 </div>
 <button (click) = "addNew()">Add</button>
 </form>
-
-
-
 </div>
+
+
+
+
 <div class="miniature-list">
     <table mat-table [dataSource]="miniatureList">
     <!-- Name -->
         <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef> Name </th>
-            <td mat-cell *matCellDef="let miniature"> {{miniature.name}} </td>
+            <td mat-cell  *matCellDef="let miniature"> 
+              <div *ngIf="!rowState[miniature.id]" > {{miniature.name}}</div> 
+              <input *ngIf="rowState[miniature.id]" id="name" type="text" [(ngModel)]="miniature.name" />
+            </td>
+            
         </ng-container>
     
     <!-- Game -->
         <ng-container matColumnDef="game">
             <th mat-header-cell *matHeaderCellDef> Game </th>
-            <td mat-cell *matCellDef="let miniature"> {{miniature.game}} </td>
+            <td mat-cell *matCellDef="let miniature">
+              <div *ngIf="!rowState[miniature.id]"> {{miniature.game}} </div>
+              <input *ngIf="rowState[miniature.id]" id="game" type="text" [(ngModel)]="miniature.game" />
+            </td>
           </ng-container>
     
     <!-- Keywords -->
     <ng-container matColumnDef="keywords">
         <th mat-header-cell *matHeaderCellDef> Keywords </th>
-        <td mat-cell *matCellDef="let miniature"> {{miniature.keywords}} </td>
+        <td mat-cell *matCellDef="let miniature"> 
+         <div *ngIf="!rowState[miniature.id]"> {{miniature.keywords}} </div>
+         <input *ngIf="rowState[miniature.id]" id="keywords" type="text" [(ngModel)]="miniature.keywords" />
+
+    <!-- Save, Edit and Delete Buttons -->
+          <button *ngIf="rowState[miniature.id]" (click)="update(miniature)" type="button">Save</button>
+          <button (click)="toggle(miniature.id)" type="button">Edit</button>
+          <button (click)="delete(miniature)" type="button">Delete</button>
+        </td>
       </ng-container>
+
+     
+
+      
     
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
     </div>
+  
