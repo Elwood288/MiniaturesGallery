@@ -24,16 +24,27 @@ return this.http.get<IMiniature[]>(this._url)
 
 // }
 
-add(name: string,game: string, keywords: string): Observable<any> {
+add(name: string,game: string, keywords: string, file: File): Observable<any> {
   var keyWordsArray = keywords.split(' ');
+    const body = new FormData();
+    // @ts-ignore
+    body.append('Id', 0);
+    body.append('Name', name);
+    body.append('Image', file);
+    body.append('Game', game);
+    body.append('Base64Image', '');
+    keyWordsArray.forEach((v, i) => body.append(`Keywords[${i}]`, v))
+
+
       var miniature = {
         Id: 0,
         Name: name,
+        Image: file,
         Game: game,
         Keywords: keyWordsArray
       };
 
- return this.http.post<IMiniature>(this._url, miniature);
+ return this.http.post<IMiniature>(this._url, body);
 }
  update(miniature: IMiniature): Observable<any>{
    return this.http.put(this._url + miniature.id, miniature);

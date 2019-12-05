@@ -8,6 +8,9 @@ import { ManagementComponent } from './management/management.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule } from '@angular/material' 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AngularFireStorage, AngularFireStorageModule } from 'angularfire2/storage';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireModule } from '@angular/fire';
 
 
 @NgModule({
@@ -23,8 +26,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     MatTableModule,
     FormsModule,
-    ReactiveFormsModule
-   
+    ReactiveFormsModule,
+    // AngularFireDatabase,
+    // AngularFireModule.initializeApp({
+    //   apiKey: "AIzaSyDqU-woVcHH-TLE4xOIZQcj4KxD_NQvI8w",
+    //   authDomain: "miniaturegalleryimages.firebaseapp.com",
+    //   storageBucket: "miniaturegalleryimages.appspot.com",
+    //   projectId: "1:836278301088:web:ea0e56decf7ca9396df4c5",
+    // }),
+    // AngularFireStorageModule
   ],
   providers: [],
   bootstrap: [AppComponent]
